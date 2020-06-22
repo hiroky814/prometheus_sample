@@ -1,0 +1,14 @@
+# alertの定義
+groups:
+- name: blackbox_exporter
+  rules:
+  - alert: http_success
+    # 評価するメトリクスと条件
+    expr: probe_success{job='blackbox_http'} != 1
+    # 評価NGとするまでの継続時間(10秒間alert状態の場合NG)
+    for: 10s
+    labels:
+      severity: critical
+    annotations:
+      summary: "{{ $labels.instance }}: http request not return 200"
+      description: "{{ $labels.instance }} http request not return 200 for more than 10 seconds."
