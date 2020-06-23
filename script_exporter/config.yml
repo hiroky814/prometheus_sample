@@ -1,0 +1,5 @@
+scripts:
+- name: file_upload
+  script: /etc/script_exporter/file_upload.sh
+  timeout:
+    max_timeout: 30

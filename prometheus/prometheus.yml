@@ -1,8 +1,8 @@
 global:
   # prometheusがexporter等に情報を取りに行く間隔(今回はblackbox_exporter)
-  scrape_interval:     15s 
+  scrape_interval:     15s
   # ruleの評価を行う間隔(今回はrule_filesで指定されているalert_roles.ymlが評価内容)
-  evaluation_interval: 15s 
+  evaluation_interval: 15s
   external_labels:
       monitor: 'codelab-monitor'
 
@@ -39,3 +39,17 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: blackbox_exporter:9115
+  - job_name: 'file_upload'
+    metrics_path: /probe
+    params:
+      script: [file_upload]
+      prefix: []
+      output: [ignore]
+    static_configs:
+      - targets:
+        - script_exporter:9469
+  - job_name: 'script_exporter'
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - script_exporter:9469

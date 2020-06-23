@@ -22,3 +22,12 @@ services:
     ports:
       - 9093:9093
     restart: always
+  script_exporter:
+    image: ricoberger/script_exporter:v2.2.0
+    container_name: script_exporter
+    command: "--config.file=/etc/script_exporter/config.yml"
+    volumes:
+      - ./script_exporter:/etc/script_exporter
+    ports:
+      - 9469:9469
+    restart: always

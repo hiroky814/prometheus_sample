@@ -12,3 +12,14 @@ groups:
     annotations:
       summary: "{{ $labels.instance }}: http request not return 200"
       description: "{{ $labels.instance }} http request not return 200 for more than 10 seconds."
+- name: script_exporter
+  rules:
+  - alert: file_upload_error
+    # 評価するメトリクスと条件
+    expr: script_success{job='file_upload'} != 1
+    for: 10s
+    labels:
+      severity: critical
+    annotations:
+      summary: "file_upload_error"
+      description: "faild upload"
