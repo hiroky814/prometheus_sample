@@ -1,10 +1,10 @@
 global:
   # slackのwebhookURLを指定
-  slack_api_url: 'https://hooks.slack.com/services/xxxxxxxxxx'
+  slack_api_url: '[slack webhook url]'
   smtp_smarthost: 'localhost:25'
   smtp_require_tls: false
   smtp_from: 'Alertmanager'
-  
+
 route:
   receiver: 'test-route'
   # グループ化の設定
@@ -15,12 +15,12 @@ route:
   group_interval: 5m
   # alertがすでに正常に送信されている場合、通知を再度送信するまでに待機する時間。
   repeat_interval: 1h
-  
+
 receivers:
 - name: 'test-route'
-  # sl亜ckのチャンネル名
+  # slackのチャンネル名
   slack_configs:
   - channel: '#general'
-  # email(slackには表示されなかった)
+  # email(※slackには表示されなかった)
   email_configs:
   - to: "zzz@gmail.com"

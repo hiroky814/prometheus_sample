@@ -1,3 +1,4 @@
+# 死活監視用のモジュール
 modules:
   http_2xx:
     prober: http
@@ -6,7 +7,7 @@ modules:
     prober: http
     http:
       method: POST
-      # HTTPヘッダを指定する
+      # HTTPヘッダを指定するときは"headers"を定義
       headers:
         xxx: yyyy
   tcp_connect:

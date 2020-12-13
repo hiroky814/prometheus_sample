@@ -2,4 +2,4 @@
 
 echo "test shell"
 
-exit 1
+exit 0
